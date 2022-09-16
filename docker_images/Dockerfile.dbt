@@ -1,0 +1,7 @@
+FROM ghcr.io/dbt-labs/dbt-postgres:1.2.latest
+
+COPY airflow_dbt . 
+
+# TODO mount this as a volume instead of baking into the image
+
+COPY profiles.yml /root/.dbt/profiles.yml 
