@@ -1,0 +1,13 @@
+airflow_dbt: # Name of the dbt project used in the dbt init command
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal # This is the extra_host that we added in the airflow-worker service in docker-compose.yaml
+      user: root
+      password: password
+      port: 5434 # This is the port I changed the dbt Postgres service to
+      dbname: dbt
+      schema: test
+      threads: 1
+      connect_timeout: 10 # default 10 seconds
