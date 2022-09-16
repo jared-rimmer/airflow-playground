@@ -29,3 +29,37 @@ These were:
 - Adding `extra_hosts: - "host.docker.internal:host-gateway"` in the airflow-worker service. 
 - Added an additional Postgres database service that would be used by dbt and Great Expectations. Because there are two Postgres instances I changed the port on this to avoid a conflict.
 - Added a Docker proxy service in order to use the Airflow DockerOperator to launch Docker images on my local machine.
+
+After this I followed the steps to initalise Airflow and bring the services up using Docker Compose.
+
+### Setting up dbt
+
+With your Python3 environment active you can type the following in your terminal:
+
+```zsh
+pip install dbt-postgres
+```
+
+Then to setup a starter project:
+
+```zsh
+dbt init airflow_dbt
+```
+
+To run dbt we are going to need a profiles.yml which you can [more information about in the official dbt docs](https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile)
+
+```
+airflow_dbt: # Name of the dbt project used in the dbt init command
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal # This is the extra_host that we added in the airflow-worker service in docker-compose.yaml
+      user: root
+      password: password
+      port: 5434 # This is the port I changed the dbt Postgres service to
+      dbname: dbt
+      schema: test
+      threads: 1
+      connect_timeout: 10 # default 10 seconds
+```
