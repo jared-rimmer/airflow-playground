@@ -1,0 +1,24 @@
+{
+  "data_asset_type": null,
+  "expectation_suite_name": "dbt.warning",
+  "expectations": [
+    {
+      "expectation_type": "expect_table_columns_to_match_ordered_list",
+      "kwargs": {
+        "column_list": [
+          "id"
+        ]
+      },
+      "meta": {
+        "notes": {
+          "content": "Some clever comment about this expectation. **Markdown** `Supported`",
+          "format": "markdown"
+        }
+      }
+    }
+  ],
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.15.23"
+  }
+}
