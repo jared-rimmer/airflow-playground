@@ -48,7 +48,7 @@ dbt init airflow_dbt
 
 To run dbt we are going to need a profiles.yml which you can [more information about in the official dbt docs](https://docs.getdbt.com/reference/warehouse-profiles/postgres-profile)
 
-```
+```yml
 airflow_dbt: # Name of the dbt project used in the dbt init command
   target: dev
   outputs:
