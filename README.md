@@ -63,3 +63,21 @@ airflow_dbt: # Name of the dbt project used in the dbt init command
       threads: 1
       connect_timeout: 10 # default 10 seconds
 ```
+
+### Building The Custom Docker Images for dbt and Great Expectations
+
+```docker
+docker build -f docker_images/Dockerfile.dbt . -t custom-dbt                            
+
+docker build -f docker_images/Dockerfile.greatExpectations . -t custom-greatexpectations                          
+```
+
+### Setting Up Great Expectations
+
+```zsh
+pip install great_expectations sqlalchemy psycopg2
+```
+
+```
+great_expectations init
+```
